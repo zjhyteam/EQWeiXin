@@ -20,7 +20,6 @@ import org.slf4j.LoggerFactory;
 public class KnowledgeDaoImpl extends BaseDao implements KnowledgeDao{
 
 	public Logger log = LoggerFactory.getLogger(MapsDetailDaoImpl.class);
-	@Override
 	public Knowledge getKnowledgeByNum(int num) {
 		Session session = getSession();
 		Query query = session.createQuery("from Knowledge where keywordsflag = 1 and num = " + num);
@@ -29,7 +28,6 @@ public class KnowledgeDaoImpl extends BaseDao implements KnowledgeDao{
 		return (Knowledge)list.get(0);
 	}
 
-	@Override
 	public List<Knowledge> getKnowledgeKWList() {
 		Session session = getSession();
 		Query query = session.createQuery("from Knowledge where keywordsflag = 1 order by num");
@@ -38,7 +36,6 @@ public class KnowledgeDaoImpl extends BaseDao implements KnowledgeDao{
 		return list;
 	}
 
-	@Override
 	public Knowledge getKnowledge() {
 		Session session = getSession();
 		Query query = session.createSQLQuery("select p.ID, p.NUM, p.KEYWORDSFLAG, p.KEYWORDS, p.TITLE, " +
@@ -68,7 +65,6 @@ public class KnowledgeDaoImpl extends BaseDao implements KnowledgeDao{
 		return (Knowledge)list.get(0);
 	}
 
-	@Override
 	public List<Knowledge> getKnowledgeByTitle(String title) {
 		Session session = getSession();
 		Query query = session.createQuery("from Knowledge where title like '%" + title + "%' or " +
@@ -78,7 +74,6 @@ public class KnowledgeDaoImpl extends BaseDao implements KnowledgeDao{
 		return list;
 	}
 
-	@Override
 	public void save(String updateInfo, String addflag, String imageName, String textname, String knowledgeImage, String localFileUrl, Knowledge knowledge) {
 		Session session = getSession();
 		session.beginTransaction();

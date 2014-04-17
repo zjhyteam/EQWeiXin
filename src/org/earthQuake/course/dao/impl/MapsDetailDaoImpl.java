@@ -80,12 +80,10 @@ public class MapsDetailDaoImpl extends BaseDao implements MapsDetailDao{
 		return list1;
 	}
 
-	@Override
 	public int updateMaps() {
 		return 0;
 	}
 
-	@Override
 	public int deleteMaps() {
 		return 0;
 	}

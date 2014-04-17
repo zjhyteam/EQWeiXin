@@ -35,7 +35,6 @@ public class CommonDaoImpl extends BaseDao implements CommonDao{
 	/**
 	 * 得到所有代码值
 	 */
-	@Override
 	public List<CodeMaintenance> getCodeValueList() {
 		Session session = getSession();
 	    Query query = session.createQuery(" from CodeMaintenance ");

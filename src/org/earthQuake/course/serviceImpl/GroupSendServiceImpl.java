@@ -18,17 +18,14 @@ public class GroupSendServiceImpl implements GroupSendService{
 		this.groupSendDao = groupSendDao;
 	}
 
-	@Override
 	public GroupSend saveGroupSend(GroupSend groupSend) {
 		return groupSendDao.saveGroupSend(groupSend);
 	}
 
-	@Override
 	public GroupSend getGroupSendById(String id, String httpUrl) {
 		return groupSendDao.getGroupSendById(id, httpUrl);
 	}
 
-	@Override
 	public List query(int page, int limit) {
 		return groupSendDao.query(page, limit);
 	}

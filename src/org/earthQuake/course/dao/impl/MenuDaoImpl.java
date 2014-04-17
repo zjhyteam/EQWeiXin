@@ -26,12 +26,10 @@ public class MenuDaoImpl extends BaseDao implements MenuDao{
 		return list;
 	}
 
-	@Override
 	public int updateMenus() {
 		return 0;
 	}
 
-	@Override
 	public int deleteMenu() {
 		return 0;
 	}

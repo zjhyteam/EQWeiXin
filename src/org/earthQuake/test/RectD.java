@@ -79,9 +79,7 @@ class RectD extends JFrame {
 	   }
 	  });
 	  this.addMouseListener(new MouseListener(){
-	   @Override
 	   public void mouseClicked(MouseEvent e) {//单击(双击)组件时调用
-	    // TODO Auto-generated method stub
 	    //双击鼠标左键
 	    if(e.getClickCount()==2){
 	     if(saveImage!=null){//如果截图了则保存图片到桌面
@@ -90,27 +88,19 @@ class RectD extends JFrame {
 	     System.exit(0);//退出
 	    }
 	   }
-	   @Override
 	   public void mouseEntered(MouseEvent e) {//进入组件时调用
-	    // TODO Auto-generated method stub
 	    
 	   }
-	   @Override
 	   public void mouseExited(MouseEvent e) {//离开组件时调用
-	    // TODO Auto-generated method stub
 	    
 	   }
-	   @Override
 	   public void mousePressed(MouseEvent e) {//在组件上按下鼠标按键时调用
-	    // TODO Auto-generated method stub
 	    //点击鼠标右键则退出程序
 	    if(e.getModifiers()==MouseEvent.BUTTON3_MASK){
 	     System.exit(0);
 	    }
 	   }
-	   @Override
 	   public void mouseReleased(MouseEvent e) {//在组件上释放鼠标按钮时调用
-	    // TODO Auto-generated method stub
 	    
 	   }   
 	  });

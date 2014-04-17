@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+	<service name="EQWeiXinWebService" provider="java:RPC">
+		<parameter name="className" value="org.earthQuake.course.webService.EQWeiXinWebService"/>
+		<parameter name="allowedMethods" value="getJson"/>
+	</service>
+</deployment>

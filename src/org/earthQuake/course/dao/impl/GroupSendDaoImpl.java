@@ -24,7 +24,6 @@ public class GroupSendDaoImpl extends BaseDao implements GroupSendDao{
 	/**
 	 * 短信群发信息保存到数据库
 	 */
-	@Override
 	public GroupSend saveGroupSend(GroupSend groupSend) {
 		Session session = getSession();
 		session.beginTransaction();
@@ -41,7 +40,6 @@ public class GroupSendDaoImpl extends BaseDao implements GroupSendDao{
 	/**
 	 * 得到群发信息的id
 	 */
-	@Override
 	public GroupSend getGroupSendById(String id, String httpUrl) {
 		Session session = getSession();
 		Query query = session.createQuery("from GroupSend where id = " + id);
@@ -57,7 +55,6 @@ public class GroupSendDaoImpl extends BaseDao implements GroupSendDao{
 		return groupSend;
 	}
 
-	@Override
 	public List query(int page, int limit) {
 		Session session = getSession();
 		List querylist =session.createCriteria(GroupSend.class)

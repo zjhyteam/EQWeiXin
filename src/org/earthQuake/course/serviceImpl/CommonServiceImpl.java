@@ -18,12 +18,10 @@ public class CommonServiceImpl implements CommonService{
 		this.commonDao = commonDao;
 	}
 
-	@Override
 	public String getCodeValue(String code) {
 		return commonDao.getCodeValue(code);
 	}
 
-	@Override
 	public List<CodeMaintenance> getCodeValueList() {
 		return commonDao.getCodeValueList();
 	}
