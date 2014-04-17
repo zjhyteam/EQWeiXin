@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+		   
+           <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+               <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
+               <property name="url" value="jdbc:oracle:thin:@localhost:1521:orcl"></property>
+               <property name="username" value="wxeq"></property>
+               <property name="password" value="dz2014"></property>
+           </bean>
+           
+           <bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+               <property name="dataSource">
+                   <ref bean="dataSource" />
+               </property>
+               <property name="hibernateProperties">
+                   <props>
+                       <prop key="hibernate.dialect">
+                           org.hibernate.dialect.Oracle10gDialect
+                       </prop>
+                       <prop key="hibernate.show_sql">true</prop>
+                       <prop key="hibernate.connection.autocommit">true</prop>
+                   </props>
+               </property>
+               <property name="mappingResources">
+                   <list>
+                       <value>org/earthQuake/course/common/bean/TabMenuDetail.hbm.xml</value>
+                       <value>org/earthQuake/course/common/bean/TabMapsDetail.hbm.xml</value>
+                       <value>org/earthQuake/course/common/bean/TabCzCatalogAutoEx.hbm.xml</value>
+                       <value>org/earthQuake/course/common/bean/TabArea.hbm.xml</value>
+                       <value>org/earthQuake/course/common/bean/CodeMaintenance.hbm.xml</value>
+                       <value>org/earthQuake/course/common/bean/JetFunction.hbm.xml</value>
+                       <value>org/earthQuake/course/common/bean/GroupSend.hbm.xml</value>
+                       <value>org/earthQuake/course/common/bean/Knowledge.hbm.xml</value>
+                   </list>
+               </property>
+           </bean>
+           <!-- 微信菜单 -->
+           <bean id="menuDao" class="org.earthQuake.course.dao.impl.MenuDaoImpl">
+               <property name="sessionFactory">
+                   <ref bean="sessionFactory" />
+               </property>
+           </bean>
+           <bean id="menuService" class="org.earthQuake.course.serviceImpl.MenuServiceImpl">
+               <property name="menuDao">
+                   <ref bean="menuDao" />
+               </property>
+           </bean>
+           
+           <!-- 地图信息 -->
+           <bean id="mapsDetailDao" class="org.earthQuake.course.dao.impl.MapsDetailDaoImpl">
+               <property name="sessionFactory">
+                   <ref bean="sessionFactory" />
+               </property>
+           </bean>
+           <bean id="mapsDetailService" class="org.earthQuake.course.serviceImpl.MapsDetailServiceImpl">
+               <property name="mapsDetailDao">
+                   <ref bean="mapsDetailDao" />
+               </property>
+           </bean>
+           <bean id="mapsDetail" class="org.earthQuake.course.action.MapsDetailAction" scope="prototype">
+               <property name="mapsDetailService">
+                   <ref bean="mapsDetailService" />
+               </property>
+               <property name="commonService">
+                   <ref bean="commonService" />
+               </property>
+           </bean>
+           
+           <!-- 地震数据 -->
+           <bean id="eQDataDao" class="org.earthQuake.course.dao.impl.EQDataDaoImpl">
+               <property name="sessionFactory">
+                   <ref bean="sessionFactory" />
+               </property>
+           </bean>
+           <bean id="eQDataService" class="org.earthQuake.course.serviceImpl.EQDataServiceImpl">
+               <property name="eQDataDao">
+                   <ref bean="eQDataDao" />
+               </property>
+           </bean>
+           
+           <!-- 地震科普知识-->
+           <bean id="knowledgeDao" class="org.earthQuake.course.dao.impl.KnowledgeDaoImpl">
+               <property name="sessionFactory">
+                   <ref bean="sessionFactory" />
+               </property>
+           </bean>
+           <bean id="knowledgeService" class="org.earthQuake.course.serviceImpl.KnowledgeServiceImpl">
+               <property name="knowledgeDao">
+                   <ref bean="knowledgeDao" />
+               </property>
+           </bean>
+           <bean id="knowledge" class="org.earthQuake.course.action.KnowledgeAction" scope="prototype">
+               <property name="knowledgeService">
+                   <ref bean="knowledgeService" />
+               </property>
+               <property name="commonService">
+                   <ref bean="commonService" />
+               </property>
+           </bean>
+           <!-- 欢迎页面 -->
+           <bean id="welCome" class="org.earthQuake.course.action.WelComeAction" scope="prototype"></bean>
+           <!-- 群发信息-->
+           <bean id="groupSendDao" class="org.earthQuake.course.dao.impl.GroupSendDaoImpl">
+               <property name="sessionFactory">
+                   <ref bean="sessionFactory" />
+               </property>
+           </bean>
+           <bean id="groupSendService" class="org.earthQuake.course.serviceImpl.GroupSendServiceImpl">
+               <property name="groupSendDao">
+                   <ref bean="groupSendDao" />
+               </property>
+           </bean>
+           <bean id="groupSend" class="org.earthQuake.course.action.GroupSendAction" scope="prototype">
+               <property name="groupSendService">
+                   <ref bean="groupSendService" />
+               </property>
+               <property name="commonService">
+                   <ref bean="commonService" />
+               </property>
+           </bean>
+           <!-- 可维护性代码-->
+           <bean id="commonDao" class="org.earthQuake.course.dao.impl.CommonDaoImpl">
+               <property name="sessionFactory">
+                   <ref bean="sessionFactory" />
+               </property>
+           </bean>
+           <bean id="commonService" class="org.earthQuake.course.serviceImpl.CommonServiceImpl">
+               <property name="commonDao">
+                   <ref bean="commonDao" />
+               </property>
+           </bean>
+           <!-- coreservice-->
+           <bean id="coreService" class="org.earthQuake.course.service.CoreService">
+               <property name="commonService">
+                   <ref bean="commonService" />
+               </property>
+               <property name="mapsDetailService">
+                   <ref bean="mapsDetailService" />
+               </property>
+               <property name="knowledgeService">
+                   <ref bean="knowledgeService" />
+               </property>
+           </bean>
+           <!-- coreservlet-->
+           <bean id="coreservlet" class="org.earthQuake.course.servlet.CoreServlet">
+               <property name="commonService">
+                   <ref bean="commonService" />
+               </property>
+               <property name="menuService">
+                   <ref bean="menuService" />
+               </property>
+               <property name="toolutil">
+                   <ref bean="toolutil" />
+               </property>
+           </bean>
+           <!-- menuinitservice-->
+           <bean id="menuinitservice" class="org.earthQuake.course.common.menu.MenuInitService">
+               <property name="commonService">
+                   <ref bean="commonService" />
+               </property>
+           </bean>
+           <!-- toolutil-->
+           <bean id="toolutil" class="org.earthQuake.course.common.ToolUtil">
+               <property name="commonService">
+                   <ref bean="commonService" />
+               </property>
+           </bean>
+           <!-- signutil-->
+           <bean id="signutil" class="org.earthQuake.course.common.SignUtil">
+               <property name="commonService">
+                   <ref bean="commonService" />
+               </property>
+           </bean>
+           <!-- knowledgepagemodel-->
+           <bean id="knowledgepagemodel" class="org.earthQuake.course.jet.model.KnowledgePageModel">
+               <property name="commonService">
+                   <ref bean="commonService" />
+               </property>
+           </bean>
+</beans>

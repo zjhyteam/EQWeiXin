@@ -1,0 +1,24 @@
+{
+    "success":true,
+    "children":[
+        {
+            "id":"1",
+            "text":"管理",
+            "leaf":false,
+            "expanded":false,
+            "children":[
+                { "id": "101", "text": "可维护性代码", "value": "CodeMaintenanceview", "type": "1", "leaf": true },
+            ],
+        },{
+            "id":"2",
+            "text":"地震",
+            "leaf":false,
+            "expanded":false,
+            "children":[
+            	{ "id": "101", "text": "后台群发", "value": "groupsendcontentform", "type": "1", "leaf": true },
+            	{ "id": "101", "text": "微信菜单配置", "value": "groupsendcontentform", "type": "1", "leaf": true },
+            	{ "id": "101", "text": "地震知识管理", "value": "knowledgepanel", "type": "1", "leaf": true },
+            ]
+        }
+    ]
+}

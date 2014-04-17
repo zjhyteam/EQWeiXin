@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+    "http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<struts>
+	<constant name="struts.objectFactory" value="spring"></constant>
+	<constant name="struts.devMode" value="false" />
+	<constant name="struts.multipart.maxSize" value="30000000000"/>
+	<constant name="struts.action.extension" value="action"/>
+	<constant name="struts.multipart.saveDir" value="C:/image/img"></constant>
+	
+	<package name="coreSpring" namespace="/" extends="json-default">
+		<!-- 地图信息 -->
+	    <action name="mapsDetail" class="mapsDetail" method="showDetail">
+	        <result name="success">/map/map.jsp</result>
+	    </action>
+	    <!-- 地震科普知识信息 -->
+	    <action name="knowledgeByNum" class="knowledge" method="getKnowledgeByNum">
+	        <result name="success">/jsp/knowledge.jsp</result>
+	    </action>
+	    <action name="knowledgeById" class="knowledge" method="getKnowledgeById">
+	        <result name="success">/jsp/knowledge.jsp</result>
+	    </action>
+	    <action name="saveknowledge" class="knowledge" method="saveKnowledge">
+	    	<result type="json">
+				<!-- 这里指定将被Struts2序列化的属性，该属性在action中必须有对应的getter方法 -->
+				<param name="root">dataMap</param>
+			</result>
+	    </action>
+	    <action name="getContentAndImgPath" class="knowledge" method="getContentAndImgPath">
+	    	<result type="json">
+				<!-- 这里指定将被Struts2序列化的属性，该属性在action中必须有对应的getter方法 -->
+				<param name="root">dataMap</param>
+			</result>
+	    </action>
+	    <!-- 欢迎页面 -->
+	    <action name="welCome" class="welCome">
+	        <result name="success">/jsp/welcome.jsp</result>
+	    </action>
+	    <!-- 群发信息 -->
+	    <action name="groupSend" class="groupSend" method="getGroupSendById">
+	        <result name="success">/jsp/groupSendInfo.jsp</result>
+	    </action>
+        <action name="saveGroupSend" class="groupSend" method="saveGroupSend">
+			<result type="json">
+				<!-- 这里指定将被Struts2序列化的属性，该属性在action中必须有对应的getter方法 -->
+				<param name="root">dataMap</param>
+			</result>
+        </action>
+        <action name="query" class="groupSend" method="query">
+			<result type="json">
+				<!-- 这里指定将被Struts2序列化的属性，该属性在action中必须有对应的getter方法 -->
+				<param name="root">dataMap</param>
+			</result>
+        </action>
+	</package>
+</struts>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+
+
+<hibernate-mapping>
+    <class name="org.earthQuake.course.common.bean.JetFunction" table="Jet_Function" lazy="false">
+        <comment>功能表</comment>
+        <id name="functionid" type="java.lang.String">
+            <column name="functionid" length="32" ><comment>功能ID</comment></column>
+            <generator class="assigned">
+            </generator>
+        </id>
+        <property name="location">
+            <column name="location" length="256"><comment>地址连接</comment></column>
+        </property>
+
+        <property name="title">
+            <column name="title" length="100"><comment>标题</comment></column>
+        </property>
+        <property name="parent">
+            <column name="parent" length="32"><comment>菜单的父节点</comment></column>
+        </property>
+        <property name="orderno">
+            <column name="orderno" length="4">
+                <comment>在同一级菜单中的序号</comment>
+            </column>
+            <type name="java.lang.Integer"/>
+        </property>
+        <property name="nodetype">
+            <column name="nodetype" length="1"><comment>菜单节点是1，菜单叶子是0，按钮是2</comment></column>
+        </property>
+        <property name="type">
+            <column name="type" length="1"><comment>widget是1，url是0</comment></column>
+        </property>
+        <property name="description">
+            <column name="description" length="256"><comment>描述</comment></column>
+        </property>
+        <property name="log">
+            <column name="log" length="1"><comment>是否记日志，1为记，其它不记</comment></column>
+        </property>
+        <property name="developer">
+            <column name="developer" length="50"><comment>开发人员</comment></column>
+        </property>
+        <property name="active">
+            <column name="active" length="1"><comment>是否可用，0为不可用1为可用</comment></column>
+        </property>
+        <property name="functiondesc">
+            <column name="functiondesc" length="500"><comment>功能描述</comment></column>
+        </property>
+        <property name="rbflag">
+            <column name="rbflag" length="1"><comment>是否回退</comment></column>
+        </property>
+        <property name="param1" length="100">
+            <column name="param1"><comment>参数1</comment></column>
+        </property>
+        <property name="param2" length="100">
+            <column name="param2"><comment>参数2</comment></column>
+        </property>
+        <property name="createdate">
+            <column name="createdate"><comment>创建时间</comment></column>
+            <type name="java.sql.Date"/>
+
+        </property>
+
+    </class>
+</hibernate-mapping>
